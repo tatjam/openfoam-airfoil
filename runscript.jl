@@ -41,7 +41,8 @@ runs = collect(Iterators.product(modes, αs))
 Threads.@threads for run in runs
     dir = rundirname(run)
     if isdir(dir)
-        rm(dir, recursive=true)
+        #rm(dir, recursive=true)
+        continue
     else
         cp("sim", dir)
     end
