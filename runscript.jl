@@ -10,8 +10,8 @@ end
 #αs = [0, 4, 8, 10, 12]
 
 #modes = [Mode("A", 250, 150, 100)]
-modes = [Mode("A", 60, 40, 40)]
-αs = [12]
+#modes = [Mode("A", 60, 40, 40)]
+#αs = [12]
 
 function rundirname(run)
     return run[1].name * "alpha" * string(run[2])

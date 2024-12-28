@@ -2,6 +2,27 @@
 
 (* Beginning of Notebook Content *)
 Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"\[Nu]", "=",
+  RowBox[{
+   FractionBox[
+    RowBox[{"10", "*", "1"}],
+    RowBox[{"2", "*",
+     RowBox[{"10", "^", "5"}]}]], "//", "N"}]}]], "Input"]
+}]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"5", "*",
+   RowBox[{"10", "^",
+    RowBox[{"(",
+     RowBox[{"-", "5"}], ")"}]}]}], "//", "N"}]], "Input"]
+}]],
+
 Cell[BoxData[
  RowBox[{
   RowBox[{"T", "[", "tu_", "]"}], ":=",
