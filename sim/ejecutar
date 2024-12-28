@@ -1,0 +1,16 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+. /opt/openfoam10/etc/bashrc
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+runApplication blockMesh
+cp 0/U 0/U.org
+#runApplication potentialFoam
+runApplication pimpleFoam
+# runApplication sample -latestTime
+cp 0/U.org 0/U
+rm 0/U.org
+
+# ----------------------------------------------------------------- end-of-file

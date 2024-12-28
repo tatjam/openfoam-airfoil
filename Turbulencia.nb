@@ -1,0 +1,108 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"T", "[", "tu_", "]"}], ":=",
+  FractionBox[
+   RowBox[{"2.13", "-",
+    RowBox[{"6.18", "*",
+     RowBox[{"Log10", "[", "tu", "]"}]}], "+", "5", " ", "-", " ",
+    RowBox[{"6.18", "*",
+     RowBox[{"Log10", "[", "tu", "]"}]}]}], "2"]}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"T", "[", "tu", "]"}]], "Input"]
+}]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"2.13", "+", "5"}], "2"]], "Input"]
+}]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"3.565", "-",
+  RowBox[{"6.18", "*",
+   RowBox[{"Log10", "[", "0.15", "]"}]}]}]], "Input"]
+}]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Uref", "=", "10"}]], "Input"]
+}]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"turbInt", "=", "0.15"}]], "Input"]
+}]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"k", "=",
+  RowBox[{
+   FractionBox["3", "2"], "*",
+   RowBox[{
+    RowBox[{"(",
+     RowBox[{"turbInt", "*", "Uref"}], ")"}], "^", "2"}]}]}]], "Input"]
+}]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[Epsilon]", "=",
+  FractionBox[
+   RowBox[{
+    RowBox[{"0.09", "^", "0.75"}], "*",
+    RowBox[{"k", "^", "1.5"}]}], "1"]}]], "Input"]
+}]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[Omega]", "=",
+  FractionBox[
+   RowBox[{"k", "^", "0.5"}],
+   RowBox[{
+    RowBox[{"0.09", "^", "0.25"}], "*", "1"}]]}]], "Input"]
+}]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"8000", "*", "5", "*",
+   FractionBox[
+    RowBox[{"10", "^",
+     RowBox[{"-", "6"}]}],
+    RowBox[{"1", "*",
+     RowBox[{"10", "^",
+      RowBox[{"-", "2"}]}]}]]}], "//", "N"}]], "Input"]
+}]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"1", "*",
+   RowBox[{"1", "/",
+    RowBox[{"(",
+     RowBox[{"2", "*",
+      RowBox[{"10", "^", "5"}]}], ")"}]}]}], "//", "N"}]], "Input"]
+}]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["0.000005"], "Input"]
+}]]
+}]
+(* End of Notebook Content *)
