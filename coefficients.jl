@@ -14,29 +14,29 @@ plot!(pl, xfoil[:, "alpha"], xfoil[:, "CL"], label="CL XFoil")
 
 # Returns 12-dimensional force vector (force_P, force_Visc, moment_P, moment_Visc)
 function extractforces(forcesstr)
-    out = Array{Float64}(undef, 12)
+    out = Matrix{Float64}(undef, (1, 12))
     negnumb = maybe(["+", "-"]) * zero_or_more(DIGIT)
     floatreg = capture(negnumb * maybe(".") * negnumb * maybe("e") * negnumb)
     regex = one_or_more("(") * floatreg * " " * floatreg * " " * floatreg * one_or_more(")")
     i = 0
-    for match in eachmatch(regex, forcesstr)
-        out[i*3+1] = parse(Float64, match.captures[1])
-        out[i*3+2] = parse(Float64, match.captures[2])
-        out[i*3+3] = parse(Float64, match.captures[3])
+    matches = eachmatch(regex, forcesstr)
+    for match in matches
+        out[1, i*3+1] = parse(Float64, match.captures[1])
+        out[1, i*3+2] = parse(Float64, match.captures[2])
+        out[1, i*3+3] = parse(Float64, match.captures[3])
         i += 1
     end
     return out
 end
 
+function extractforces_mode(mode, α)
+    dir = rundirname((mode, α))
+    forces = DataFrame(CSV.File(dir * "/postProcessing/forces/0/forces.dat", header=false, skipto=4))
+
+    return vcat([extractforces(x) for x in forces[:, 2]]...)
+end
 
 function richardsonCLα(α)
     # Load each mode 
-    for mode in modes
-        dir = rundirname((mode, α))
-        forces = DataFrame(CSV.File(dir * "/postProcessing/forces/0/forces.dat", header=false, skipto=4))
-
-        display(forces[:, 2])
-    end
+    return map(x -> extractforces_mode(x, α), modes)
 end
-
-CLs = map(x -> richardsonCLα(x), αs)
