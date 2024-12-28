@@ -17,10 +17,10 @@ Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{
-  RowBox[{"5", "*",
+  RowBox[{"50", "*",
    RowBox[{"10", "^",
     RowBox[{"(",
-     RowBox[{"-", "5"}], ")"}]}]}], "//", "N"}]], "Input"]
+     RowBox[{"-", "6"}], ")"}]}]}], "//", "N"}]], "Input"]
 }]],
 
 Cell[BoxData[
