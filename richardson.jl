@@ -1,5 +1,5 @@
 module Richardson
-export Mode, modes, αs, rundirname, richardson
+export Mode, modes, αs, rundirname, richardson, richardson_order
 
 struct Mode
     name::AbstractString
@@ -17,8 +17,9 @@ end
 
 function richardson_order(values)
     if values[1] .> values[2] .> values[3] .|| values[1] .< values[2] .< values[3]
-        return log.((values[1] .- values[2]) ./ (values[2] .- values[3])) ./ log(2)
+        return 3.0 / (2.0 * ln(2)) .* log.((values[1] .- values[2]) ./ (values[2] .- values[3]))
     else
+        @warn "Non-monotonic: $(values[1]), $(values[2]), $(values[3])"
         return missing
     end
 end

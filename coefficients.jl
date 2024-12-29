@@ -5,10 +5,6 @@ using DataFrames
 using Plots
 using ReadableRegex
 
-# Plots the OpenFOAM results alongside XFoil
-pl = plot()
-xfoil = DataFrame(CSV.File("xfoil/NACA 0012_T1_Re0.200_M0.00_N8.3.csv", header=10))
-plot!(pl, xfoil[:, "alpha"], xfoil[:, "CL"], label="CL XFoil")
 
 # Load each value from XFoil
 
@@ -90,6 +86,7 @@ function interpolatevar(forces, fromts, tots)
     return out
 end
 
+# Returns ts and fixed as a 3-tensor
 function homogeneize(α)
     ts = extract_t(α)
     forces = extractforces_alpha(α)
@@ -98,14 +95,61 @@ function homogeneize(α)
     for mode in eachindex(forces)
         fixed[mode] = interpolatevar(forces[mode], ts[mode], ts[maxlen])
     end
-    return fixed
+    return ts[maxlen], cat(fixed..., dims=3)
+end
+
+
+# For each time-step. Only the best estimate is used (we don't use Richardson)
+function plot_coefficient(adim, foil)
+    # Plots the OpenFOAM results alongside XFoil
+    pl = plot()
+    xfoil = DataFrame(CSV.File("xfoil/NACA 0012_T1_Re0.200_M0.00_N8.3.csv", header=10))
+
+    pl = plot()
+    plot!(pl, xfoil[:, "alpha"], xfoil[:, foil], label=foil * " XFoil")
+    # Avg, Dev
+    avg = zeros(length(αs))
+    max = zeros(length(αs))
+    min = zeros(length(αs))
+
+    for αi in eachindex(αs)
+        α = αs[αi]
+        (ts, homo) = homogeneize(α)
+        i25 = findfirst(x -> x > ts[end] * 0.5, ts)
+        avga = 0
+        maxa = -9999999
+        mina = 9999999
+        for ti in i25:length(ts)
+            val = 0
+            x = homo[ti, 1, 3] + homo[ti, 4, 3]
+            z = homo[ti, 3, 3] + homo[ti, 6, 3]
+            if foil == "CL"
+                val = (z + x * sin(deg2rad(α))) / adim
+            elseif foil == "CD"
+                val = (x + z * sin(deg2rad(α))) / adim
+            end
+            avga += val
+            maxa = Base.max(maxa, val)
+            mina = Base.min(mina, val)
+        end
+        avga /= length(ts[i25:end])
+
+        avg[αi] = avga
+        max[αi] = maxa
+        min[αi] = mina
+    end
+    plot!(pl, αs, avg, label=foil * " OF (Avg.)")
+    plot!(pl, αs, max, label=foil * " OF (Max.)")
+    plot!(pl, αs, min, fillrange=max, fillalpha=0.35, label="OF (Min)")
+    return pl
 end
 
 function plot_richardsonorder(α, var, label)
-    ts = extract_t(α)
-    a = extractforces_alpha(α)
-    v = extractvar(a, var)
-    r = richardson_order.(v)
-    pl2 = plot()
+    (ts, fixed) = homogeneize(α)
+    order = zeros(Union{Missing,Float64}, length(ts))
+    for i in eachindex(ts)
+        order[i] = richardson_order(fixed[i, var, :])
+    end
+    pl2 = plot(ts, order)
     return pl2
 end

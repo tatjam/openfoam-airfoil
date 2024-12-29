@@ -5,29 +5,29 @@ Notebook[{
 
 Cell[CellGroupData[{
 Cell[BoxData[
- RowBox[{
-  RowBox[{"Solve", "[",
+ RowBox[{"Solve", "[",
+  RowBox[{
    RowBox[{
-    RowBox[{
-     FractionBox[
-      RowBox[{"A", "-", "B"}],
-      RowBox[{"B", "-", "C"}]], "==",
-     FractionBox[
+    FractionBox[
+     RowBox[{"a", "-", "b"}],
+     RowBox[{"b", "-", "c"}]], "==",
+    FractionBox[
+     RowBox[{
+      RowBox[{"1", "^", "n"}], "-",
       RowBox[{
-       RowBox[{"1", "^", "n"}], "-",
-       RowBox[{
-        RowBox[{"(",
-         FractionBox["1",
-          RowBox[{"CubeRoot", "[", "4", "]"}]], ")"}], "^", "n"}]}],
+       RowBox[{"(",
+        FractionBox["1",
+         RowBox[{"CubeRoot", "[", "4", "]"}]], ")"}], "^", "n"}]}],
+     RowBox[{
       RowBox[{
-       RowBox[{
-        RowBox[{"(",
-         FractionBox["1",
-          RowBox[{"CubeRoot", "[", "4", "]"}]], ")"}], "^", "n"}], "-",
-       RowBox[{
-        RowBox[{"(",
-         FractionBox["1", "2"], ")"}], "^", "n"}]}]]}], ",", "n", ",",
-    "Reals"}], "]"}], "//", "FullSimplify"}]], "Input"]
+       RowBox[{"(",
+        FractionBox["1",
+         RowBox[{"CubeRoot", "[", "4", "]"}]], ")"}], "^", "n"}], "-",
+      RowBox[{
+       RowBox[{"(",
+        FractionBox["1",
+         RowBox[{"CubeRoot", "[", "16", "]"}]], ")"}], "^", "n"}]}]]}], ",",
+   "n", ",", "Reals"}], "]"}]], "Input"]
 }]],
 
 Cell[CellGroupData[{
@@ -48,7 +48,8 @@ Cell[BoxData[
        RowBox[{"CubeRoot", "[", "4", "]"}]], ")"}], "^", "n"}], "-",
     RowBox[{
      RowBox[{"(",
-      FractionBox["1", "2"], ")"}], "^", "n"}]}]], "//",
+      FractionBox["1",
+       RowBox[{"CubeRoot", "[", "16", "]"}]], ")"}], "^", "n"}]}]], "//",
   "FullSimplify"}]], "Input"]
 }]],
 
@@ -58,17 +59,13 @@ Cell[BoxData[
  RowBox[{"Solve", "[",
   RowBox[{
    RowBox[{
-    RowBox[{
-     RowBox[{"2", "^",
-      RowBox[{"(",
-       RowBox[{"n", "/", "3"}], ")"}]}], "+",
-     RowBox[{"2", "^",
-      RowBox[{"(",
-       RowBox[{"2", "*",
-        RowBox[{"n", "/", "3"}]}], ")"}]}]}], "==",
+    RowBox[{"2", "^",
+     RowBox[{"(",
+      RowBox[{"2", "*",
+       RowBox[{"n", "/", "3"}]}], ")"}]}], "==",
     FractionBox[
-     RowBox[{"A", "-", "B"}],
-     RowBox[{"B", "-", "C"}]]}], ",", "n", ",", "Reals"}], "]"}]], "Input"]
+     RowBox[{"a", "-", "b"}],
+     RowBox[{"b", "-", "c"}]]}], ",", "n", ",", "Reals"}], "]"}]], "Input"]
 }]]
 }]
 (* End of Notebook Content *)
