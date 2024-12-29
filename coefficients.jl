@@ -54,6 +54,7 @@ function extractvar(modes, var)
     return map(x -> x[:, var], modes)
 end
 
+
 function plot_convergence(α, var, label)
     ts = extract_t(α)
     a = extractforces_alpha(α)
@@ -65,5 +66,42 @@ function plot_convergence(α, var, label)
         plot!(pl2, ts[mode], v[mode],
             label="Nx=" * string(modes[mode].nx) * ", ND=" * string(modes[mode].nd) * ", NT=" * string(modes[mode].nx))
     end
-    return pl
+    return pl2
+end
+
+# The problem is that each mode has used different time-steps 
+# What we do is linearly interpolate up to the longest one
+function interpolatevar(forces, fromts, tots)
+    out = zeros(length(tots), size(forces)[2])
+    for i in eachindex(tots)
+        t = tots[i]
+        left = findlast(x -> x <= t, fromts)
+        right = findfirst(x -> x >= t, fromts)
+        if isnothing(right)
+            @warn "Interpolation failed for t = " * string(t)
+            out[i, :] .= forces[end, :]
+        elseif left == right
+            out[i, :] .= forces[right, :]
+        else
+            interp = (t - fromts[left]) / (fromts[right] - fromts[left])
+            out[i, :] .= forces[left, :] .* (1.0 - interp) .+ forces[right, :] .* interp
+        end
+    end
+    return out
+end
+
+function homogeneize(allts, allforces)
+    maxlen = findmax(map(x -> length(x), allforces))[2]
+    for mode in allforces
+
+    end
+end
+
+function plot_richardsonorder(α, var, label)
+    ts = extract_t(α)
+    a = extractforces_alpha(α)
+    v = extractvar(a, var)
+    r = richardson_order.(v)
+    pl2 = plot()
+    return pl2
 end

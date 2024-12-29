@@ -1,0 +1,74 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Solve", "[",
+   RowBox[{
+    RowBox[{
+     FractionBox[
+      RowBox[{"A", "-", "B"}],
+      RowBox[{"B", "-", "C"}]], "==",
+     FractionBox[
+      RowBox[{
+       RowBox[{"1", "^", "n"}], "-",
+       RowBox[{
+        RowBox[{"(",
+         FractionBox["1",
+          RowBox[{"CubeRoot", "[", "4", "]"}]], ")"}], "^", "n"}]}],
+      RowBox[{
+       RowBox[{
+        RowBox[{"(",
+         FractionBox["1",
+          RowBox[{"CubeRoot", "[", "4", "]"}]], ")"}], "^", "n"}], "-",
+       RowBox[{
+        RowBox[{"(",
+         FractionBox["1", "2"], ")"}], "^", "n"}]}]]}], ",", "n", ",",
+    "Reals"}], "]"}], "//", "FullSimplify"}]], "Input"]
+}]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox[
+   RowBox[{
+    RowBox[{"1", "^", "n"}], "-",
+    RowBox[{
+     RowBox[{"(",
+      FractionBox["1",
+       RowBox[{"CubeRoot", "[", "4", "]"}]], ")"}], "^", "n"}]}],
+   RowBox[{
+    RowBox[{
+     RowBox[{"(",
+      FractionBox["1",
+       RowBox[{"CubeRoot", "[", "4", "]"}]], ")"}], "^", "n"}], "-",
+    RowBox[{
+     RowBox[{"(",
+      FractionBox["1", "2"], ")"}], "^", "n"}]}]], "//",
+  "FullSimplify"}]], "Input"]
+}]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[",
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"2", "^",
+      RowBox[{"(",
+       RowBox[{"n", "/", "3"}], ")"}]}], "+",
+     RowBox[{"2", "^",
+      RowBox[{"(",
+       RowBox[{"2", "*",
+        RowBox[{"n", "/", "3"}]}], ")"}]}]}], "==",
+    FractionBox[
+     RowBox[{"A", "-", "B"}],
+     RowBox[{"B", "-", "C"}]]}], ",", "n", ",", "Reals"}], "]"}]], "Input"]
+}]]
+}]
+(* End of Notebook Content *)

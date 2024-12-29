@@ -51,3 +51,5 @@ Threads.@threads for run in runs
     runsim(run)
     @info "Dir $(dir) is done!"
 end
+
+# Empezo a las 12:56 (approx) acabó a la 01:21
