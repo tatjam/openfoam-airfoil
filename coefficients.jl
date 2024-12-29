@@ -90,11 +90,15 @@ function interpolatevar(forces, fromts, tots)
     return out
 end
 
-function homogeneize(allts, allforces)
-    maxlen = findmax(map(x -> length(x), allforces))[2]
-    for mode in allforces
-
+function homogeneize(α)
+    ts = extract_t(α)
+    forces = extractforces_alpha(α)
+    maxlen = findmax(map(x -> length(x), ts))[2]
+    fixed = similar(forces)
+    for mode in eachindex(forces)
+        fixed[mode] = interpolatevar(forces[mode], ts[mode], ts[maxlen])
     end
+    return fixed
 end
 
 function plot_richardsonorder(α, var, label)
